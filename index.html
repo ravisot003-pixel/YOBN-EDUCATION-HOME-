@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOBN Education Home Tuition Centre</title>
+
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.4;
+      font-weight: 400;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-bottom: 75px; /* for footer badge */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      border-radius: 7px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 12px 15px 50px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 15px 12px;
+      border-bottom: 1px solid #e3e3e3;
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      z-index: 10;
+    }
+
+    header .logo {
+      width: 36px;
+      height: 36px;
+      background-color: #000;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header .logo svg,
+    header .logo span {
+      fill: #fff;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    header .text-wrapper {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    header .title {
+      font-weight: 700;
+      font-size: 17px;
+      color: #000;
+    }
+
+    header .subtitle {
+      font-weight: 400;
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+
+    header .menu-icon {
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Buttons */
+    .btn-primary,
+    button.enroll {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      padding: 14px 0;
+      border-radius: 19px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    .btn-primary svg {
+      margin-left: 5px;
+      width: 15px;
+      height: 15px;
+      stroke-width: 2;
+      stroke: #fff;
+      fill: none;
+    }
+
+    .btn-secondary,
+    button.view-courses {
+      margin-top: 12px;
+      width: 100%;
+      background: none;
+      border: 1.5px solid #000;
+      border-radius: 19px;
+      color: #000;
+      padding: 14px 0;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .btn-secondary svg {
+      width: 17px;
+      height: 17px;
+      fill: #000;
+    }
+
+    /* Admissions Open badge */
+    .admissions-badge {
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      user-select: none;
+      letter-spacing: 0.03em;
+    }
+
+    /* Limited seats badge */
+    .limited-seats-badge {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #f3f3f3;
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 7px 15px;
+      border-radius: 20px;
+      user-select: none;
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+    }
+
+    .limited-seats-badge svg {
+      width: 18px;
+      height: 18px;
+      fill: #000;
+      flex-shrink: 0;
+    }
+
+
+    /* Headings */
+    h1,
+    h2,
+    h3 {
+      font-weight: 800;
+      color: #000;
+      margin: 12px 0 10px 0;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    h3 {
+      font-size: 15.5px;
+      margin-bottom: 6px;
+    }
+
+    p.subheading {
+      font-weight: 400;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+      text-align: center;
+      line-height: 1.25;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    p.section-desc {
+      font-weight: 400;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #fafafa;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      padding: 15px 15px 16px 15px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.04);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      user-select: none;
+    }
+
+    .card-icon {
+      min-width: 38px;
+      min-height: 38px;
+      background-color: #000;
+      border-radius: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .card-icon svg {
+      fill: #fff;
+      width: 18px;
+      height: 18px;
+    }
+
+    .card-content {
+      flex-grow: 1;
+    }
+
+    .card-content h3 {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-content p {
+      font-weight: 400;
+      color: #444;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    /* Tags */
+    .tags {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background-color: #f1f1f1;
+      padding: 5.5px 11px;
+      border-radius: 15px;
+      font-size: 13px;
+      color: #555;
+      font-weight: 400;
+      user-select: none;
+    }
+
+    /* Faculty cards - similar to regular cards but slightly bigger icons */
+    .faculty-card {
+      background-color: #fafafa;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      padding: 20px 20px 22px 20px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.05);
+      user-select: none;
+    }
+
+    .faculty-card .fac-icon {
+      font-size: 32px;
+      background-color: #000;
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .faculty-card h3 {
+      margin: 0 0 6px 0;
+      font-weight: 700;
+    }
+
+    .faculty-card p {
+      font-weight: 400;
+      font-size: 14px;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    .faculty-card p.specialization strong {
+      font-weight: 600;
+    }
+
+    /* Advantage checklists */
+    .check-section {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .check-item {
+      background-color: #fafafa;
+      border-radius: 9px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      user-select: none;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.03);
+    }
+
+    .check-item strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    /* Checkmark icon */
+    .check-item::before {
+      content: "✓";
+      margin-right: 12px;
+      color: #000;
+      font-weight: 700;
+      font-size: 16px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      user-select: none;
+    }
+
+    /* Contact info */
+    .contact-info {
+      margin-top: 16px;
+      margin-bottom: 30px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-weight: 400;
+      font-size: 15px;
+      color: #444;
+      user-select: none;
+    }
+
+    .contact-icon {
+      background-color: #000;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    /* Contact Form */
+    form {
+      margin-top: 16px;
+      margin-bottom: 50px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      border: 1.5px solid #ddd;
+      font-size: 15px;
+      border-radius: 7px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    form textarea {
+      min-height: 100px;
+    }
+
+    form button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      padding: 14px 0;
+      width: 100%;
+      font-size: 15px;
+      border-radius: 19px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Footer Emergent Badge */
+    .emergent-badge {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #000;
+      color: #fff;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 15px;
+      gap: 8px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      z-index: 30;
+    }
+
+    .emergent-badge svg {
+      fill: #fff;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo" aria-label="YOBN Education logo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L20 6V18L12 22L4 18V6L12 2Z" stroke="none" fill="white" />
+        <path d="M12 2L20 6V18L12 22L4 18V6L12 2Z" stroke="none" />
+        <path d="M9 10V16" stroke="#FFF" stroke-width="2" stroke-linecap="round" />
+        <path d="M15 10V16" stroke="#FFF" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="text-wrapper">
+      <div class="title">YOBN Education</div>
+      <div class="subtitle">Home Tuition Centre</div>
+    </div>
+    <div class="menu-icon" aria-label="Menu">&#9776;</div>
+  </header>
+
+  <main class="container">
+
+    <div style="text-align: center;">
+      <div class="admissions-badge">ADMISSIONS OPEN!</div>
+      <h1>YOBN Education Home Tuition Centre</h1>
+      <p class="subheading">Quality home tuition and academic guidance from Pre-Nursery to B.A. (Arts)</p>
+      <button class="btn-primary enroll" aria-label="Enroll Now">
+        Enroll Now
+        <svg viewBox="0 0 24 24" aria-hidden="true" role="img" focusable="false">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <button class="btn-secondary view-courses" aria-label="View Courses">
+        View Courses
+        <svg viewBox="0 0 24 24" aria-hidden="true" role="img" focusable="false">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="#000" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div class="limited-seats-badge" aria-label="Limited Seats Available">
+        <svg viewBox="0 0 24 24" aria-hidden="true" role="img" focusable="false">
+          <circle cx="12" cy="12" r="10" fill="#000" />
+          <path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Limited Seats Available
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <section>
+      <h2>Why Choose Us</h2>
+      <p class="section-desc">We provide comprehensive education with personalized attention to help every student succeed</p>
+
+      <div class="card" tabindex="0" aria-label="Strong Foundation Building - We focus on building a solid academic foundation for every student">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path fill="white" d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm-4 4h2v-2H3v2zm4 0h14v-2H7v2zm-4 4h2v-2H3v2zm4 0h14v-2H7v2z"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Strong Foundation Building</h3>
+          <p>We focus on building a solid academic foundation for every student</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Individual Attention - Personal attention for every student to ensure optimal learning">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="white" /><path fill="white" d="M12 14c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z" /></svg>
+        </div>
+        <div class="card-content">
+          <h3>Individual Attention</h3>
+          <p>Personal attention for every student to ensure optimal learning</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Easy Learning Techniques - Effective and easy-to-understand teaching methods">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="white" d="M12 2a7 7 0 0 1 7 7c0 1.8-1.2 3.3-2.9 4l-.6-.9a4.4 4.4 0 0 0 0-3.1 7.05 7.05 0 0 0-3.2-3.8 7 7 0 0 1-.9-.2z" /></svg>
+        </div>
+        <div class="card-content">
+          <h3>Easy Learning Techniques</h3>
+          <p>Effective and easy-to-understand teaching methods</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="D Level Exam Prep - Special preparation for Punjab D Level Examinations">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="white" d="M12 2l3 7h7l-5.5 4.5 2 7-6-4-6 4 2-7L2 9h7l3-7z"/></svg>
+        </div>
+        <div class="card-content">
+          <h3>D Level Exam Prep</h3>
+          <p>Special preparation for Punjab D Level Examinations</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Regular Monitoring - Regular tests and comprehensive performance tracking">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="white" d="M9 21V7h6v14h5v-2h-4v-1a2 2 0 1 0-4 0v1H5v2h4z"/></svg>
+        </div>
+        <div class="card-content">
+          <h3>Regular Monitoring</h3>
+          <p>Regular tests and comprehensive performance tracking</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Affordable Fees - Quality education at an affordable fee structure">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="white" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 16h-2v-2h2zm2-7h-3V7h-2v4H8v2h3v4h2v-4h3z"/></svg>
+        </div>
+        <div class="card-content">
+          <h3>Affordable Fees</h3>
+          <p>Quality education at an affordable fee structure</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Courses Section -->
+    <section>
+      <h2>Our Courses</h2>
+      <p class="section-desc">Comprehensive coaching from Pre-Nursery to B.A. (Arts) with specialized attention</p>
+
+      <div class="card" tabindex="0" aria-label="Pre-Nursery & Nursery: 2-5 years - Foundation learning with fun activities and basic concepts. Courses - Basic English, Basic Math, Drawing">
+        <div class="card-content">
+          <h3>Pre-Nursery & Nursery</h3>
+          <p>2-5 years</p>
+          <p>Foundation learning with fun activities and basic concepts</p>
+          <div class="tags">
+            <span class="tag">Basic English</span>
+            <span class="tag">Basic Math</span>
+            <span class="tag">Drawing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Primary (Class 1-5): 6-10 years - Building core academic skills in all fundamental subjects. Courses - English, Mathematics, Science">
+        <div class="card-content">
+          <h3>Primary (Class 1-5)</h3>
+          <p>6-10 years</p>
+          <p>Building core academic skills in all fundamental subjects</p>
+          <div class="tags">
+            <span class="tag">English</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Middle School (Class 6-8): 11-13 years - Comprehensive subject learning with exam preparation. Courses - English, Mathematics, Science">
+        <div class="card-content">
+          <h3>Middle School (Class 6-8)</h3>
+          <p>11-13 years</p>
+          <p>Comprehensive subject learning with exam preparation</p>
+          <div class="tags">
+            <span class="tag">English</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Secondary (Class 9-10): 14-15 years - Board exam focused preparation with in-depth subject knowledge. Courses - English, Mathematics, Science">
+        <div class="card-content">
+          <h3>Secondary (Class 9-10)</h3>
+          <p>14-15 years</p>
+          <p>Board exam focused preparation with in-depth subject knowledge</p>
+          <div class="tags">
+            <span class="tag">English</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Senior Secondary (Class 11-12): 16-17 years - Stream-specific preparation for board exams. Streams - Arts Stream, Commerce Stream, Science Stream">
+        <div class="card-content">
+          <h3>Senior Secondary (Class 11-12)</h3>
+          <p>16-17 years</p>
+          <p>Stream-specific preparation for board exams</p>
+          <div class="tags">
+            <span class="tag">Arts Stream</span>
+            <span class="tag">Commerce Stream</span>
+            <span class="tag">Science Stream</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="B.A. (Arts): 18+ years - Specialized coaching for Arts subjects and UGC NET preparation. Courses - Political Science, History, Religion">
+        <div class="card-content">
+          <h3>B.A. (Arts)</h3>
+          <p>18+ years</p>
+          <p>Specialized coaching for Arts subjects and UGC NET preparation</p>
+          <div class="tags">
+            <span class="tag">Political Science</span>
+            <span class="tag">History</span>
+            <span class="tag">Religion</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-secondary" aria-label="View All Courses">View All Courses →</button>
+    </section>
+
+    <!-- Our Expert Faculty -->
+    <section>
+      <h2>Our Expert Faculty</h2>
+      <p class="section-desc">Learn from UGC NET qualified teachers with deep subject expertise</p>
+
+      <div class="faculty-card" tabindex="0" aria-label="Faculty Ravinder Singh - M.A. Political Science, UGC NET Qualified, Specialization Political Science, Social Studies, Arts Subjects, Expert in competitive exam preparation">
+        <div class="fac-icon" aria-hidden="true">👨‍🏫</div>
+        <h3>Ravinder Singh</h3>
+        <p><em>M.A. Political Science, UGC NET Qualified</em></p>
+        <p class="specialization"><strong>Specialization:</strong> Political Science, Social Studies, Arts Subjects</p>
+        <p>Expert in competitive exam preparation</p>
+      </div>
+
+      <div class="faculty-card" tabindex="0" aria-label="Faculty Rajwinder Kaur - M.A. Religion, UGC NET Qualified, Specialization Religion, Philosophy, Arts Subjects, Specialized in conceptual clarity and analytical thinking">
+        <div class="fac-icon" aria-hidden="true">👩‍🏫</div>
+        <h3>Rajwinder Kaur</h3>
+        <p><em>M.A. Religion, UGC NET Qualified</em></p>
+        <p class="specialization"><strong>Specialization:</strong> Religion, Philosophy, Arts Subjects</p>
+        <p>Specialized in conceptual clarity and analytical thinking</p>
+      </div>
+    </section>
+
+    <!-- The YOBN Advantage -->
+    <section>
+      <h2>The YOBN Advantage</h2>
+
+      <div class="check-section" aria-label="Advantages">
+        <div class="check-item">
+          <strong>Experienced Faculty</strong>
+          UGC NET qualified teachers with deep subject expertise
+        </div>
+        <div class="check-item">
+          <strong>Proven Track Record</strong>
+          Consistent results and student success stories
+        </div>
+        <div class="check-item">
+          <strong>Home Tuition Comfort</strong>
+          Learn in the comfort of your home with flexible timings
+        </div>
+        <div class="check-item">
+          <strong>Limited Batch Size</strong>
+          Small batches ensure every student gets personal attention
+        </div>
+      </div>
+    </section>
+
+    <!-- Get in Touch -->
+    <section>
+      <h2>Get in Touch</h2>
+      <p>Visit us or reach out for more information about our courses and admission process.</p>
+
+      <div class="contact-info">
+        <div class="contact-info-item" tabindex="0">
+          <div class="contact-icon">📍</div>
+          <div>Near Gobind Ata Chki, New Professor Colony, Patiala</div>
+        </div>
+
+        <div class="contact-info-item" tabindex="0">
+          <div class="contact-icon">📞</div>
+          <div>+91 82838-54549</div>
+        </div>
+
+        <div class="contact-info-item" tabindex="0">
+          <div class="contact-icon">✉️</div>
+          <div>ravisot003@gmail.com</div>
+        </div>
+      </div>
+
+      <form aria-label="Contact form">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="
